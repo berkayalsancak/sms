@@ -90,8 +90,18 @@ def main():
 
     log_yaz("--- CYCLE FINISHED. 24H SLEEP ---")
 
-    # 24 saat bekle (86400 saniye)
-    time.sleep(86400)
+    # 24 saat bekle ama her dakika log at (Railway uyku yapmasın)
+    for i in range(86400, 0, -60):
+        saat = i // 3600
+        dakika = (i % 3600) // 60
+        log_yaz(f"Timer: {saat:02d}:{dakika:02d} remaining")
+        time.sleep(60)
 
 if __name__ == "__main__":
-    main()
+    while True:
+        try:
+            main()
+        except Exception as e:
+            log_yaz(f"[SYSTEM ERROR] {str(e)}")
+            log_yaz("Restarting in 60 seconds...")
+            time.sleep(60)
