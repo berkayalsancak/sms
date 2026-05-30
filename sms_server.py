@@ -88,7 +88,10 @@ def main():
         sms_islemi(numara)
         time.sleep(random.randint(10, 20))
 
-    log_yaz("--- CYCLE FINISHED ---")
+    log_yaz("--- CYCLE FINISHED. 24H SLEEP ---")
+
+    # 24 saat bekle (86400 saniye)
+    time.sleep(86400)
 
 if __name__ == "__main__":
     main()
